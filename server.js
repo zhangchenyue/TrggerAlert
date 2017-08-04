@@ -58,6 +58,6 @@ server.use(function (err, req, res, next) {
 
 server.set('port', process.env.PORT || 3000);
 
-var uniquers = server.listen(server.get('port'), function () {
+var uniquers = server.listen(server.get('port'), '0.0.0.0', function () {
     console.log('server listening on port ' + uniquers.address().port);
 });
