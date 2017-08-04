@@ -9,6 +9,7 @@ var logger = require('morgan');
 var bodyParser = require('body-parser');
 var compression = require('compression')
 
+
 var server = express();
 var env = process.env.NODE_ENV || 'development';
 server.locals.ENV = env;

@@ -17,9 +17,10 @@ function guid() {
         s4() + '-' + s4() + s4() + s4();
 }
 
-function triggerAlert(jwtToken) {
+function triggerAlert(jwtToken,args, callback) {
     const ALERT_API_HOST = 'engdmzprism.azure-api.net';
-    const ALERT_API_PATH = '/' + ENV + '/Alert/v1/alerts/' + guid();
+    const ALERT_API_PATH = '/' + args.env + '/Alert/v1/alerts/' + guid();
+    console.log('ALERT_API_PATH', ALERT_API_PATH);
     var put_data = JSON.stringify({
         'type': 'Daily Footage',
         'source': 'Rhapsody',
@@ -30,7 +31,7 @@ function triggerAlert(jwtToken) {
         'contentType': 'string',
         'contentEncoding': '',
         'content': 'Footage alert',
-        'wellId': WELL_ID
+        'wellId': args.well
     });
     const OPTIONS = {
         hostname: ALERT_API_HOST, port: 443, path: ALERT_API_PATH, method: 'PUT', rejectUnauthorized: false, headers: {
@@ -45,6 +46,7 @@ function triggerAlert(jwtToken) {
         alertres.on('end', function () {
             alertreq.end();
             console.log(body);
+            if(callback) callback(body);
         });
     });
 
@@ -56,17 +58,18 @@ function triggerAlert(jwtToken) {
     alertreq.end();
 }
 
-function main() {
-    var req = https.request({ hostname: STS_HOST, port: STS_HOST_PORT, path: '/SvcSts/Token', method: 'POST', rejectUnauthorized: false, }, (res) => {
+function trigger(args, callback) {
+    var req = https.request({ hostname: args.stshost, port: args.stsport, path: '/SvcSts/Token', method: 'POST', rejectUnauthorized: false, }, (res) => {
         let body = '';
         res.on('data', d => body += d)
             .on('end', () => {
                 req.end();
-                triggerAlert(JSON.parse(body)['access_token'])
+                triggerAlert(JSON.parse(body)['access_token'],args, callback)
             });
     }).on('error', e => console.error(e))
     req.write(querystring.stringify({ 'grant_type': 'password', 'NameIdentifier': UPN, 'unique_name': UPN }));
     req.end();
 }
 
-main();
+var alert = { 'trigger': trigger };
+module.exports = alert;

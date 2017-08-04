@@ -1,4 +1,6 @@
 $('#btn-trigger').click((e) => {
+    $('.alert').hide();
+    $('#btn-trigger').addClass('disabled');
     submit();
     return false;
 });
@@ -11,6 +13,9 @@ function submit() {
         'well': $('#well').val()
     }
     $.post('/api/alert', data).done(function (res) {
+        $('.alert').show();
+        $('#btn-trigger').removeClass('disabled');
         console.log(res);
     });
 }
+$('.alert').hide();
