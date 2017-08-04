@@ -1,0 +1,17 @@
+{
+  "name": "trigger-alert",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "bootstrap": "^3.3.7",
+    "compression": "^1.6.2",
+    "express": "^4.14.0",
+    "jquery": "^2.2.4",
+    "morgan": "^1.7.0",
+    "serve-favicon": "^2.3.0"
+  },
+  "scripts": {
+    "start": "node server"
+  }
+}

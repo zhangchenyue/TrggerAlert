@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="Uniquers">
+    <meta name="description" content="">
+    <title>Alert Trigger</title>
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/index.css" rel="stylesheet">
+</head>
+
+<body>
+    <h2>Prism Alert Trigger Page Demo</h2>
+    <div class="main container">
+        <div class="panel panel-primary">
+            <div class="panel-heading">Alert Trigger</div>
+            <div class="panel-body">
+                <form>
+                    <div class="form-group">
+                        <label for="stshost">STS Host</label>
+                        <input type="text" class="form-control" id="stshost" value="dc2-cloud.slbcloud.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="stsport">STS Port</label>
+                        <input type="number" class="form-control" id="stsport" value="57799">
+                    </div>
+                    <div class="form-group">
+                        <label for="env">Environment</label>
+                        <input type="text" class="form-control" id="env" value="rointro">
+                    </div>
+                    <div class="form-group">
+                        <label for="well">Well ID</label>
+                        <input type="text" class="form-control" id="well" value="28ee46ba-712d-4e94-a0fc-09e77f984aef">
+                    </div>
+                    <div class="trigger">
+                        <button id="btn-trigger" type="submit" class="btn btn-lg btn-success">Trigger</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/index.js"></script>
+</body>
+
+</html>
